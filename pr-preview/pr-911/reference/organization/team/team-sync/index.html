@@ -4680,7 +4680,8 @@ the following properties are supported:</p>
 <p>The available IdP groups of an organization, including their id, name and description, can be listed with the
 <a href="https://docs.github.com/en/enterprise-cloud@latest/rest/teams/team-sync#list-idp-groups-for-an-organization">GitHub REST API</a>.</p>
 <p>Team synchronization requires an organization on GitHub Enterprise Cloud with team synchronization enabled,
-it is not available for organizations that are part of an enterprise using Enterprise Managed Users.</p>
+it is not available for organizations that are part of an enterprise using Enterprise Managed Users.
+Up to five IdP groups can be connected to a team.</p>
 <p>Like other resources managed by otterdog, a group that is removed from <code>team_sync</code> is only disconnected
 from the team when applying the configuration with deletions enabled (<code>--delete-resources</code>). As long as
 a group stays connected, the members of the team are provisioned by the IdP and <code>members</code> is not applied.</p>

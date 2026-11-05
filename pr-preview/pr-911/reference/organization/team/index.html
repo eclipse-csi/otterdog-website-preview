@@ -4647,7 +4647,7 @@
 <h2 id="identity-provider-integration">Identity provider integration<a class="headerlink" href="#identity-provider-integration" title="Permanent link">&para;</a></h2>
 <p>The membership of a team can be managed by an identity provider (IdP), with one of these mechanisms:</p>
 <ul>
-<li><strong>team synchronization</strong> (<code>team_sync</code>): one or more IdP groups are connected to the team, available for
+<li><strong>team synchronization</strong> (<code>team_sync</code>): up to five IdP groups are connected to the team, available for
   organizations on GitHub Enterprise Cloud with team synchronization enabled</li>
 <li><strong>external groups</strong> (<code>external_group_id</code>): a single external group is connected to the team, available for
   organizations that are part of an enterprise using Enterprise Managed Users</li>
@@ -4670,6 +4670,7 @@ i.e. defines the <code>newTeamSync</code> function for team synchronization, or 
 <li>specifying both <code>team_sync</code> and <code>external_group_id</code>, triggers an error</li>
 <li>specifying a non-empty list of <code>members</code> for a team connected to an identity provider group, triggers an error</li>
 <li>specifying the same group <code>id</code> more than once in <code>team_sync</code>, triggers an error</li>
+<li>specifying more than five groups in <code>team_sync</code>, triggers an error</li>
 </ul>
 <h2 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">jsonnet</label></div>
