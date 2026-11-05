@@ -4653,10 +4653,13 @@
   organizations that are part of an enterprise using Enterprise Managed Users</li>
 </ul>
 <p>Both mechanisms are mutually exclusive. The members of a team connected to an IdP are provisioned by the IdP,
-so <code>members</code> must not be set for such a team, and the current members of the team are ignored.</p>
+so <code>members</code> must not be set for such a team, and the current members of the team are ignored.
+When an existing team is connected to an external group for the first time, its current members are removed
+beforehand, as required by GitHub.</p>
 <p>The connections to IdP groups are only retrieved from GitHub if the default configuration supports them,
 i.e. defines the <code>newTeamSync</code> function for team synchronization, or the <code>external_group_id</code> property in
-<code>newTeam</code> for external groups. If a mechanism is not available for an organization, it is skipped.</p>
+<code>newTeam</code> for external groups. If a mechanism is not available for an organization, it is skipped, while
+missing permissions of the credentials to retrieve them are reported as an error.</p>
 <h2 id="jsonnet-function">Jsonnet Function<a class="headerlink" href="#jsonnet-function" title="Permanent link">&para;</a></h2>
 <div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'&lt;name&gt;'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&lt;</span><span class="nv">key</span><span class="err">&gt;</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">value</span><span class="o">&gt;</span>
