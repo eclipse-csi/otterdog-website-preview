@@ -4655,7 +4655,8 @@
 <p>Both mechanisms are mutually exclusive. The members of a team connected to an IdP are provisioned by the IdP,
 so <code>members</code> must not be set for such a team, and the current members of the team are ignored.
 When an existing team is connected to an external group for the first time, its current members are removed
-beforehand, as required by GitHub.</p>
+beforehand, as required by GitHub, once the external group has been found. They are restored with their role
+if the team can not be connected.</p>
 <p>The connections to IdP groups are only retrieved from GitHub if the default configuration supports them,
 i.e. defines the <code>newTeamSync</code> function for team synchronization, or the <code>external_group_id</code> property in
 <code>newTeam</code> for external groups. If a mechanism is not available for an organization, it is skipped, while
