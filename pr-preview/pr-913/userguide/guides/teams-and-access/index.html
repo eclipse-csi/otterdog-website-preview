@@ -1174,9 +1174,34 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../reference/organization/team/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/organization/team/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1189,7 +1214,59 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2_12" id="__nav_3_2_2_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_12_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2_12">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Team
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/team/team-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Team Sync
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
     </li>
   
 
@@ -3489,6 +3566,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Teams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#teams-managed-by-an-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Teams managed by an identity provider
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4320,6 +4414,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Teams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#teams-managed-by-an-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Teams managed by an identity provider
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4549,6 +4660,10 @@ configuration or elsewhere:</p>
 <td>by an external tool, including the team itself</td>
 <td>the team is excluded with <code>exclude_teams</code>, see <a href="../../../operating_otterdog/organization-policies/#teams-managed-by-another-tool">Organization-wide policies</a></td>
 </tr>
+<tr>
+<td>by an identity provider (IdP), with GitHub Enterprise Cloud</td>
+<td><code>team_sync</code> or <code>external_group_id</code> connects the team to IdP groups, see <a href="#teams-managed-by-an-identity-provider">Teams managed by an identity provider</a></td>
+</tr>
 </tbody>
 </table>
 <div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newOrg</span><span class="p">(</span><span class="s">'my-project'</span><span class="p">,</span><span class="w"> </span><span class="s">'my-org'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -4577,22 +4692,71 @@ invitations stay under the control of another process.</p>
 <p>Teams with <code>privacy: "secret"</code> are only visible to their members and organization owners. Secret teams cannot be
 used as bypass actors of rulesets, see
 <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#granting-bypass-permissions-for-your-branch-or-tag-ruleset">Creating rulesets for a repository</a>.</p>
-<h2 id="grant-teams-access-to-repositories">Grant teams access to repositories<a class="headerlink" href="#grant-teams-access-to-repositories" title="Permanent link">&para;</a></h2>
-<p>The repository property <code>team_permissions</code> maps the slug of a team to its permission on the repository:</p>
+<h3 id="teams-managed-by-an-identity-provider">Teams managed by an identity provider<a class="headerlink" href="#teams-managed-by-an-identity-provider" title="Permanent link">&para;</a></h3>
+<p>On GitHub Enterprise Cloud, the members of a team can be provisioned by groups of an identity provider (IdP),
+depending on how the organization authenticates its members:</p>
+<ul>
+<li>with <a href="../../../reference/organization/team/team-sync/">team synchronization</a>, up to five IdP groups, identified by
+  their id, are connected to a team with <code>team_sync</code></li>
+<li>with Enterprise Managed Users (EMU), a single external group is connected to a team with <code>external_group_id</code></li>
+</ul>
+<p>The members of such a team are provisioned by the IdP, so <code>members</code> is not set and the current members of the team
+are ignored, see <a href="../../../reference/organization/team/#identity-provider-integration">Identity provider integration</a>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Team synchronization</label><label for="__tabbed_1_2">External group (EMU)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newOrg</span><span class="p">(</span><span class="s">'my-project'</span><span class="p">,</span><span class="w"> </span><span class="s">'my-org'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nv">teams</span><span class="p">+:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'maintainers'</span><span class="p">),</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'documentation'</span><span class="p">),</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="p">],</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nv">_repositories</span><span class="p">+::</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newRepo</span><span class="p">(</span><span class="s">'my-repo'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nv">team_permissions</span><span class="p">+:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="nv">maintainers</span><span class="p">:</span><span class="w"> </span><span class="s">"maintain"</span><span class="p">,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nv">documentation</span><span class="p">:</span><span class="w"> </span><span class="s">"triage"</span><span class="p">,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="p">},</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">},</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="p">],</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'admins'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="s">"Admins, provisioned by the IdP groups"</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nv">team_sync</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeamSync</span><span class="p">(</span><span class="s">'5d4b0a8e-2c19-4b5f-8d6c-1f2e3a4b5c6d'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">          </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="s">"git-admins"</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="s">"Admin access via the IdP"</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeamSync</span><span class="p">(</span><span class="s">'9f8e7d6c-5b4a-4321-8fed-cba987654321'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="s">"git-release-managers"</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">      </span><span class="p">],</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><a href="https://otterdog.eclipse.org/playground?template=example#code=b3Jncy5uZXdPcmcoJ215LXByb2plY3QnLCAnbXktb3JnJykgewogIHRlYW1zKzogWwogICAgb3Jncy5uZXdUZWFtKCdhZG1pbnMnKSB7CiAgICAgIGRlc2NyaXB0aW9uOiAiQWRtaW5zLCBwcm92aXNpb25lZCBieSB0aGUgSWRQIGdyb3VwcyIsCiAgICAgIHRlYW1fc3luYzogWwogICAgICAgIG9yZ3MubmV3VGVhbVN5bmMoJzVkNGIwYThlLTJjMTktNGI1Zi04ZDZjLTFmMmUzYTRiNWM2ZCcpIHsKICAgICAgICAgIG5hbWU6ICJnaXQtYWRtaW5zIiwKICAgICAgICAgIGRlc2NyaXB0aW9uOiAiQWRtaW4gYWNjZXNzIHZpYSB0aGUgSWRQIiwKICAgICAgICB9LAogICAgICAgIG9yZ3MubmV3VGVhbVN5bmMoJzlmOGU3ZDZjLTViNGEtNDMyMS04ZmVkLWNiYTk4NzY1NDMyMScpIHsKICAgICAgICAgIG5hbWU6ICJnaXQtcmVsZWFzZS1tYW5hZ2VycyIsCiAgICAgICAgfSwKICAgICAgXSwKICAgIH0sCiAgXSwKfQo" rel="noopener" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-2 14.5 6-4.5-6-4.5z"/></svg></span> Open in the Playground</a></p>
+</div>
+<div class="tabbed-block">
+<div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newOrg</span><span class="p">(</span><span class="s">'my-project'</span><span class="p">,</span><span class="w"> </span><span class="s">'my-org'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nv">teams</span><span class="p">+:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'admins'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="s">"Admins, provisioned by an external group"</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nv">external_group_id</span><span class="p">:</span><span class="w"> </span><span class="mf">1234</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><a href="https://otterdog.eclipse.org/playground?template=example#code=b3Jncy5uZXdPcmcoJ215LXByb2plY3QnLCAnbXktb3JnJykgewogIHRlYW1zKzogWwogICAgb3Jncy5uZXdUZWFtKCdhZG1pbnMnKSB7CiAgICAgIGRlc2NyaXB0aW9uOiAiQWRtaW5zLCBwcm92aXNpb25lZCBieSBhbiBleHRlcm5hbCBncm91cCIsCiAgICAgIGV4dGVybmFsX2dyb3VwX2lkOiAxMjM0LAogICAgfSwKICBdLAp9Cg" rel="noopener" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-2 14.5 6-4.5-6-4.5z"/></svg></span> Open in the Playground</a></p>
+</div>
+</div>
+</div>
+<p>The ids of the available groups can be listed with the GitHub REST API, see
+<a href="https://docs.github.com/en/enterprise-cloud@latest/rest/teams/team-sync#list-idp-groups-for-an-organization">List IdP groups for an organization</a>
+and <a href="https://docs.github.com/en/enterprise-cloud@latest/rest/teams/external-groups#list-external-groups-available-to-an-organization">List external groups available to an organization</a>.</p>
+<h2 id="grant-teams-access-to-repositories">Grant teams access to repositories<a class="headerlink" href="#grant-teams-access-to-repositories" title="Permanent link">&para;</a></h2>
+<p>The repository property <code>team_permissions</code> maps the slug of a team to its permission on the repository:</p>
+<div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newOrg</span><span class="p">(</span><span class="s">'my-project'</span><span class="p">,</span><span class="w"> </span><span class="s">'my-org'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nv">teams</span><span class="p">+:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'maintainers'</span><span class="p">),</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newTeam</span><span class="p">(</span><span class="s">'documentation'</span><span class="p">),</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nv">_repositories</span><span class="p">+::</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newRepo</span><span class="p">(</span><span class="s">'my-repo'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="nv">team_permissions</span><span class="p">+:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="nv">maintainers</span><span class="p">:</span><span class="w"> </span><span class="s">"maintain"</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="nv">documentation</span><span class="p">:</span><span class="w"> </span><span class="s">"triage"</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
 </span></code></pre></div>
 <p><a href="https://otterdog.eclipse.org/playground?template=example#code=b3Jncy5uZXdPcmcoJ215LXByb2plY3QnLCAnbXktb3JnJykgewogIHRlYW1zKzogWwogICAgb3Jncy5uZXdUZWFtKCdtYWludGFpbmVycycpLAogICAgb3Jncy5uZXdUZWFtKCdkb2N1bWVudGF0aW9uJyksCiAgXSwKICBfcmVwb3NpdG9yaWVzKzo6IFsKICAgIG9yZ3MubmV3UmVwbygnbXktcmVwbycpIHsKICAgICAgdGVhbV9wZXJtaXNzaW9ucys6IHsKICAgICAgICBtYWludGFpbmVyczogIm1haW50YWluIiwKICAgICAgICBkb2N1bWVudGF0aW9uOiAidHJpYWdlIiwKICAgICAgfSwKICAgIH0sCiAgXSwKfQo" rel="noopener" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-2 14.5 6-4.5-6-4.5z"/></svg></span> Open in the Playground</a></p>
 <p>The permissions and their GitHub roles are listed in <a href="../../../reference/organization/repository/#team-permissions">Team Permissions</a>,
