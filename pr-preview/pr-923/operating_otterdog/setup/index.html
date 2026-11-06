@@ -5028,8 +5028,8 @@ organization, which a pull request can change. Their values are matched literall
 <p>A Bitwarden reference <code>&lt;item id&gt;@&lt;field&gt;</code> is matched against its item id, each item has to be allowed explicitly.</p>
 <p>A reference must consist of segments separated by <code>/</code> that only contain letters, digits, <code>.</code>, <code>_</code>, <code>@</code>, <code>+</code> and <code>-</code>.
 Segments <code>.</code> and <code>..</code> are not allowed, so that a reference can not leave the allowed paths.</p>
-<p>The policy is checked when validating a configuration, including the validation of pull requests by the WebApp, and
-before resolving each secret during <code>apply</code>.</p>
+<p>The policy is checked when validating a configuration, including the validation of pull requests and the playground
+of a project in the WebApp, and before resolving each secret during <code>apply</code>.</p>
 <h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
 <p>The cli of otterdog reads the following environment variables:</p>
 <table>
