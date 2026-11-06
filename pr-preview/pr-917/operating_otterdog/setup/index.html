@@ -343,6 +343,8 @@
       
         
       
+        
+      
     
     
     
@@ -420,6 +422,8 @@
     
       
         
+      
+    
       
     
       
@@ -3687,6 +3691,8 @@
       
         
       
+        
+      
     
     
     
@@ -4015,6 +4021,33 @@
     
   
   Organization-wide policies
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Threat model
 
     
   </span>
@@ -4508,6 +4541,8 @@
       
         
       
+        
+      
     
     
     
@@ -4554,7 +4589,10 @@
 </ul>
 <h3 id="default-configuration">Default configuration<a class="headerlink" href="#default-configuration" title="Permanent link">&para;</a></h3>
 <p>The example <a href="https://github.com/eclipse-csi/otterdog/blob/main/otterdog/resources/defaults/otterdog-defaults.libsonnet">default config</a> has all supported features enabled and can be used right away.
-However, it is advised to use a released tag instead of <code>main</code> to avoid incompatibilities.</p>
+However, reference a released tag or a commit SHA instead of <code>main</code> in <code>base_template</code>, the ref after <code>@</code> in the
+example below, to avoid incompatibilities and unreviewed changes. A branch is pulled on every run: every push to it
+changes the inherited values of your organizations and the <a href="../organization-policies/#enforce-settings-with-validation-scripts">validation scripts</a> that otterdog executes
+with your credentials. Otterdog logs a warning when <code>base_template</code> references a branch.</p>
 <p>A change of the default configuration applies to all the organizations using it. Its impact can be evaluated
 beforehand on the <strong>Template impact</strong> page of the administration of the otterdog dashboard: the files of the default
 configuration are edited there, and the configurations of the projects are evaluated with the edited files. The page
