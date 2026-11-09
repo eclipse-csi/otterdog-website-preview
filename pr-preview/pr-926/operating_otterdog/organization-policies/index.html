@@ -4812,10 +4812,18 @@ section of the <code>otterdog.json</code> file, or in the entry of an organizati
 </table>
 <p><code>unmanaged</code> must be a list of paths. An invalid list, e.g. a path that does not exist, is reported when an operation
 uses the organization, with the closest valid paths. The configuration is still loaded and the other organizations are
-not affected. Settings that decide how others are compared or sent cannot be unmanaged, the error explains why:
-<code>repository.private</code>, <code>repository.archived</code>, <code>repository.gh_pages_build_type</code>,
-<code>repository.code_scanning_default_setup_enabled</code>, <code>organization.settings.has_discussions</code>,
-<code>organization.settings.custom_properties</code> and <code>organization.settings.workflows.selected_repositories</code>.</p>
+not affected. Settings that decide how others are compared or sent cannot be unmanaged, the error explains why:</p>
+<ul>
+<li>the workflow settings of the organization that restrict its repositories: <code>enabled_repositories</code>,
+  <code>selected_repositories</code>, <code>allowed_actions</code>, <code>default_workflow_permissions</code> and
+  <code>actions_can_approve_pull_request_reviews</code>, and <code>repository.workflows.enabled</code> and
+  <code>repository.workflows.allowed_actions</code>,</li>
+<li>the immutable release policy of the organization, the discussions (<code>has_discussions</code> and
+  <code>discussion_source_repository</code>) and its custom properties,</li>
+<li><code>repository.private</code> and <code>repository.archived</code>, the GitHub Pages build type and custom domain
+  (<code>repository.gh_pages_build_type</code> and <code>repository.gh_pages_cname</code>) and
+  <code>repository.code_scanning_default_setup_enabled</code>.</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>show-default</code> displays what the functions of the template define, without the entries of <code>unmanaged</code>.</p>
