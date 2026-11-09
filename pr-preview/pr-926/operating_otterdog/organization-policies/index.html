@@ -4762,7 +4762,7 @@ section of the <code>otterdog.json</code> file, or in the entry of an organizati
 <p>Everything listed is not managed for the organization:</p>
 <ul>
 <li>A setting is not retrieved if it is read with a request of its own, e.g. the topics or the custom properties of a
-  repository. It is not compared with the configuration, not written to the configuration by <code>import</code>, not sent to
+  repository, also not from a repository that <code>apply</code> creates. It is not compared with the configuration, not written to the configuration by <code>import</code>, not sent to
   GitHub, e.g. when creating a repository, and not validated. Its value in the configuration of the organization is
   ignored.</li>
 <li>A resource is not read from GitHub, so it is neither compared nor deleted. If the configuration of the organization
@@ -4810,14 +4810,23 @@ section of the <code>otterdog.json</code> file, or in the entry of an organizati
 </tr>
 </tbody>
 </table>
-<p>An entry that is not a valid path stops otterdog when loading the configuration, and the error suggests the closest
-valid paths. A few settings cannot be unmanaged as other settings depend on their value:
-<code>organization.settings.custom_properties</code>, which repositories are checked against, and
-<code>organization.settings.workflows.selected_repositories</code>.</p>
+<p><code>unmanaged</code> must be a list of paths. An invalid list, e.g. a path that does not exist, is reported when an operation
+uses the organization, with the closest valid paths. The configuration is still loaded and the other organizations are
+not affected. Settings that decide how others are compared or sent cannot be unmanaged, the error explains why:
+<code>repository.private</code>, <code>repository.archived</code>, <code>repository.gh_pages_build_type</code>,
+<code>repository.code_scanning_default_setup_enabled</code>, <code>organization.settings.has_discussions</code>,
+<code>organization.settings.custom_properties</code> and <code>organization.settings.workflows.selected_repositories</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>show-default</code> displays what the functions of the template define, without the entries of <code>unmanaged</code>.</p>
-<p>The list is not used by the dashboard of the webapp yet.</p>
+<p>The list is meant to set up otterdog for an organization without defining a default configuration of your own.
+The webapp uses it for the validation of pull requests and the apply of merged ones, but not yet in its dashboard.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The members of a team connected to an external group are provisioned by the identity provider and not
+compared. <code>team.external_group_id</code> is meant for organizations that cannot use external groups: <code>validate</code> reports
+an error if a team declares one while it is unmanaged, as its members would be compared.</p>
 </div>
 
 
