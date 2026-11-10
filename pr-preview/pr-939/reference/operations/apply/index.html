@@ -4761,6 +4761,9 @@ quoted when it contains spaces, commas or brackets. Quote the whole selector in 
 <p>A selector that matches none of the resources to delete is reported with a warning, e.g. for a misspelled type or
 a condition that names neither the key of the resource nor its parent. The planning takes the selection into
 account, e.g. a team stays connected to an IdP group whose removal from <code>team_sync</code> is not selected.</p>
+<p>As the other changes are skipped, the resources are selected, displayed and deleted with the current state of
+their parent: the variables of a repository renamed with <code>aliases</code> are deleted in the repository with its current
+name, and selected with <code>repository=&lt;current name&gt;</code>.</p>
 <h3 id="deleting-resources-in-all-organizations">Deleting resources in all organizations<a class="headerlink" href="#deleting-resources-in-all-organizations" title="Permanent link">&para;</a></h3>
 <p>Without organization, <code>apply</code> processes all the organizations of the otterdog configuration, one after the other,
 and asks for approval for each organization that has a selected deletion:</p>
