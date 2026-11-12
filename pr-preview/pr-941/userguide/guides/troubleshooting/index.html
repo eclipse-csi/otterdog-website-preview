@@ -4678,8 +4678,9 @@ Its <strong>Validate</strong> button also has the configuration of an organizati
 <dt><strong><code>&lt;repository&gt; has 'code_scanning_default_languages' configured while the repository does not yet exist.</code></strong></dt>
 <dd>
 <p>Languages are checked against the languages detected in the repository, which requires the repository to exist.
-  Create the repository first, with default setup enabled but without languages, then configure the languages in a
-  second change, see <a href="../repository-security/#languages-must-be-detected-in-the-repository">Languages must be detected in the repository</a>.</p>
+  Create the repository with default setup enabled but without languages: GitHub analyzes the languages it detects
+  once code is pushed. Only configure a language in a second change if GitHub does not analyze it on its own, e.g. a
+  compiled language, see <a href="../repository-security/#languages-analyzed-by-github">Languages analyzed by GitHub</a>.</p>
 </dd>
 <dt><strong><code>&lt;repository&gt; has 'code_scanning_default_languages' configured with '&lt;language&gt;' but this language is not detected in the repository. Detected languages: ...</code></strong></dt>
 <dd>
@@ -4800,6 +4801,12 @@ Its <strong>Validate</strong> button also has the configuration of an organizati
 <p>Otterdog manages all protections of the configured repositories, a protection that is not part of the
   configuration is removed when deletions are applied. Add it to the configuration instead, see the warning in
   <a href="../rulesets-vs-branch-protection/#otterdog-specifics">Otterdog specifics</a>.</p>
+</dd>
+<dt><strong>A language removed from <code>code_scanning_default_languages</code> is still analyzed</strong></dt>
+<dd>
+<p>The configured languages are the minimum set of languages to analyze: languages that GitHub analyzes in addition
+  are kept, and <code>plan</code> does not report them. To stop analyzing a language, change the default setup in the GitHub
+  web interface, see <a href="../repository-security/#languages-analyzed-by-github">Languages analyzed by GitHub</a>.</p>
 </dd>
 <dt><strong>A rotated secret is not updated on GitHub</strong></dt>
 <dd>

@@ -4990,9 +4990,9 @@ The languages supported by CodeQL are listed in
 <p><code>validate</code> also checks each configured language against the languages that GitHub detects in the repository, which
 are shown in the sidebar of the repository: a language that is not detected, e.g. <code>python</code> for a repository without
 Python code, is reported as error, with the list of detected languages. Only <code>actions</code> is always accepted.</p>
-<p>As a consequence, languages can only be configured for repositories that already exist and contain code: create
-the repository first, then configure the languages in a second change. A new repository can enable default setup
-without languages:</p>
+<p>As a consequence, languages can only be configured for repositories that already exist and contain code. A new
+repository enables default setup without languages, GitHub then analyzes the languages it detects once code is
+pushed:</p>
 <div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newOrg</span><span class="p">(</span><span class="s">'my-project'</span><span class="p">,</span><span class="w"> </span><span class="s">'my-org'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nv">_repositories</span><span class="p">+::</span><span class="w"> </span><span class="p">[</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nv">orgs</span><span class="p">.</span><span class="nf">newRepo</span><span class="p">(</span><span class="s">'my-new-repo'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
