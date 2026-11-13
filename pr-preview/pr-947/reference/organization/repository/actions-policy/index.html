@@ -4870,7 +4870,8 @@ allowed by all the policies that target its workflow. The policies of the organi
 the workflows that <code>exclude_workflows</code> does not exclude.</p>
 <p>The rules of a policy that otterdog does not support, e.g. <strong>Require lockfile</strong> whose rule GitHub does not
 publish in its API yet, are kept when otterdog updates the policy. A rule missing from the configuration, e.g. with
-a default configuration predating it, is not managed either and keeps its current value.</p>
+a default configuration predating it, is not managed either and keeps its current value, as does one of
+<code>include_workflows</code> and <code>exclude_workflows</code> missing from the configuration while the other one is configured.</p>
 <h2 id="jsonnet-function">Jsonnet Function<a class="headerlink" href="#jsonnet-function" title="Permanent link">&para;</a></h2>
 <div class="language-jsonnet highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">orgs</span><span class="p">.</span><span class="nf">newRepoActionsPolicy</span><span class="p">(</span><span class="s">'&lt;name&gt;'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&lt;</span><span class="nv">key</span><span class="err">&gt;</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">value</span><span class="o">&gt;</span>
