@@ -5290,15 +5290,38 @@ permissions until an organization owner accepts the new ones in the organization
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ingress
 </span></code></pre></div>
+<p>The WebApp exposes two status endpoints, suited for liveness and readiness probes:</p>
+<ul>
+<li><code>/internal/health</code> answers <code>200</code> as soon as the WebApp handles requests, without checking any other service.</li>
+<li><code>/internal/ready</code> checks that MongoDB, Redis and GHProxy are reachable. It answers <code>200</code> when all of them are,
+  <code>503</code> otherwise, along with the result of each check. The checks run at most once every 5 seconds in each
+  worker of the WebApp, requests received in the meantime get the same result:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>curl<span class="w"> </span>https://&lt;your-otterdog-address&gt;/internal/ready
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">{</span><span class="s2">"checks"</span>:<span class="o">{</span><span class="s2">"ghproxy"</span>:<span class="o">{</span><span class="s2">"status"</span>:<span class="s2">"ok"</span><span class="o">}</span>,<span class="s2">"mongodb"</span>:<span class="o">{</span><span class="s2">"status"</span>:<span class="s2">"ok"</span><span class="o">}</span>,<span class="s2">"redis"</span>:<span class="o">{</span><span class="s2">"status"</span>:<span class="s2">"error"</span>,<span class="s2">"error"</span>:<span class="s2">"ConnectionError"</span><span class="o">}}</span>,<span class="s2">"status"</span>:<span class="s2">"error"</span><span class="o">}</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only use <code>/internal/ready</code> as a readiness probe: used as a liveness probe, an outage of
+MongoDB, Redis or GHProxy would get the WebApp restarted over and over. GHProxy is checked
+by opening a connection to it, as every request sent to it is forwarded to GitHub.</p>
+</div>
 <h3 id="init-otterdog">Init Otterdog<a class="headerlink" href="#init-otterdog" title="Permanent link">&para;</a></h3>
 <p>After deployment, Otterdog initializes itself automatically with a helm hook, but this can also be done manually by calling the initialization endpoint::</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>https://&lt;your-otterdog-address&gt;/internal/init
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>https://&lt;your-otterdog-address&gt;/internal/init
 </span></code></pre></div>
 <p>This initialization will:
 - Fetch the Otterdog configuration from the GitHub repository
 - Sync the current state from GitHub
 - Set up the initial data structures in MongoDB
 - Refresh, in the background, the per organization pull request digests backing the statistics</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A single initialization runs at a time across all workers, until the background tasks it
+started have completed. A call received meanwhile starts nothing and is answered with
+<code>429 Too Many Requests</code> and a <code>Retry-After</code> header, which <code>curl --retry</code> honors. The same
+applies to <code>/internal/check</code> while the blueprints are being checked.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Refreshing the pull request digests queries GitHub once per organization, so a deployment
@@ -5353,18 +5376,18 @@ installation token of each organization. A request that hits a rate limit is sen
 wait asked by GitHub is over, which slows the check down.</p>
 <h3 id="updating-the-deployment">Updating the Deployment<a class="headerlink" href="#updating-the-deployment" title="Permanent link">&para;</a></h3>
 <p>To upgrade to the latest chart or image version:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>eclipse-csi<span class="w"> </span>otterdog<span class="w"> </span>-f<span class="w"> </span>values.yaml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>eclipse-csi<span class="w"> </span>otterdog<span class="w"> </span>-f<span class="w"> </span>values.yaml
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It requires to init Otterdog to sync the PRs</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>curl<span class="w"> </span>https://&lt;your-otterdog-address&gt;/internal/init
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>curl<span class="w"> </span>https://&lt;your-otterdog-address&gt;/internal/init
 </span></code></pre></div>
 </div>
 <h3 id="uninstalling-otterdog">Uninstalling Otterdog<a class="headerlink" href="#uninstalling-otterdog" title="Permanent link">&para;</a></h3>
 <p>To remove the WebApp from your cluster:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>otterdog
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>otterdog
 </span></code></pre></div>
 <h3 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h3>
 <ul>
