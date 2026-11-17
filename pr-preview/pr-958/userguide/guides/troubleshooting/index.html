@@ -1,0 +1,5471 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Manage GitHub organizations at scale">
+      
+      
+      
+        <link rel="canonical" href="https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-958/userguide/guides/troubleshooting/">
+      
+      
+      
+        <link rel="prev" href="../repository-patterns/">
+      
+      
+        <link rel="next" href="../../unsupported/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon-32x32.png">
+      <meta name="generator" content="zensical-0.1.0">
+    
+    
+      
+        <title>Troubleshooting - otterdog</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/theme.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+    <meta property="og:image" content="https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-958/assets/images/otterdog-social.png">
+    <meta property="og:image:alt" content="Eclipse Otterdog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="noindex, nofollow">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </button>
+            
+            Preview of
+    <a href="https://github.com/eclipse-csi/otterdog/pull/958">pull request #958</a>,
+    the published documentation is at <a href="https://csi.eclipse.dev/otterdog/">https://csi.eclipse.dev/otterdog/</a>.
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="otterdog" class="md-header__button md-logo" aria-label="otterdog" data-md-component="logo">
+      
+  <img src="../../../assets/images/otterdog-emblem.png" alt="otterdog">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            otterdog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/eclipse-csi/otterdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eclipse-csi/otterdog
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+  
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../getting-started/" class="md-tabs__link">
+        
+  
+  Getting started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../operating_otterdog/" class="md-tabs__link">
+          
+  
+  Operating Otterdog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../developing_otterdog/" class="md-tabs__link">
+          
+  
+  Developing Otterdog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+    
+      <nav class="md-tabs otterdog-subtabs" aria-label="User Guide">
+        <div class="md-grid">
+          <ul class="md-tabs__list">
+            
+              
+                <li class="md-tabs__item">
+                  <a href="../../" class="md-tabs__link">Overview</a>
+                </li>
+              
+            
+              
+                
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workflow/" class="md-tabs__link">
+          
+  
+  Making changes
+
+        </a>
+      </li>
+    
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Configuration Guides
+
+        </a>
+      </li>
+    
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    
+      
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="././" class="md-tabs__link">
+          
+  
+  When something goes wrong
+
+        </a>
+      </li>
+    
+  
+
+              
+            
+          </ul>
+        </div>
+      </nav>
+    
+  
+
+  
+
+  
+
+          
+        
+      
+  
+
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="otterdog" class="md-nav__button md-logo" aria-label="otterdog" data-md-component="logo">
+      
+  <img src="../../../assets/images/otterdog-emblem.png" alt="otterdog">
+
+    </a>
+    otterdog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eclipse-csi/otterdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eclipse-csi/otterdog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Getting started
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Reference
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Reference
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Resources
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Resources
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/resource-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Format
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/organization/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GitHub Organization
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  GitHub Organization
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Settings
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/role/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Role
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/webhook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Webhook
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/dependabot-secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Dependabot Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/codespaces-secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Codespaces Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/variable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Variable
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/ruleset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Ruleset
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/code-security-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Code Security Configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/actions-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization Actions Policy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/custom-property/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Custom Property
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/organization/team/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Team
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2_13" id="__nav_3_2_2_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_13_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2_13">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Team
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/team/team-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Team Sync
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/organization/repository/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2_14" id="__nav_3_2_2_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_14_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2_14">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Repository
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/webhook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Webhook
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/dependabot-secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Dependabot Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/codespaces-secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Codespaces Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/variable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Variable
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_14_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/organization/repository/environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Environment
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2_14_7" id="__nav_3_2_2_14_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_3_2_2_14_7_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2_14_7">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Environment
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/environment/secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Environment Secret
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/environment/variable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Environment Variable
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/branch-protection-rule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch Protection Rule
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/ruleset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Ruleset
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/actions-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository Actions Policy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2_15" id="__nav_3_2_2_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Referenced Types
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_15_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_2_2_15">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Referenced Types
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/actor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Actor
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/allowed-actor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Allowed Actor
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/branch-or-tag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch or Tag
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/bypass-actor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Bypass Actor
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repo-name-matcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repo Name Matcher
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/ref-matcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Ref Matcher
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/secret-value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Secret Value
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/organization/repository/status-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Status Check
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/policies/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Policies
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Policies
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/policies/dependency-track-upload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Upload SBOM data to dependency track
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/policies/macos-large-runners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Usage of macOS large runners
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/blueprints/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Blueprints
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Blueprints
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/blueprints/required-file/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Required File
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/blueprints/pin-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Pin Workflow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/blueprints/append-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Append Configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/blueprints/scorecard-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  OSSF Scorecard Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/operations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Operations
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  CLI Operations
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/apply/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Apply
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/check-status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Check Status
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Import
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/validate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Validate
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/operations/list-advisories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  List Advisories
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  User Guide
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  User Guide
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Making changes
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Making changes
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Workflow for changes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Adding, renaming and removing resources
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration Guides
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Configuration Guides
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Fundamentals
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Fundamentals
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inheritance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Inherited and explicit values
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reusable-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Reusing configuration with Jsonnet
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Protecting code
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Protecting code
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branch-protection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Protecting branches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organization-rulesets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization-wide rulesets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rulesets-vs-branch-protection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Rulesets or branch protection rules
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrating-to-rulesets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating to rulesets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tag-protection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Protecting tags and releases
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Security and automation
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Security and automation
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github-actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Securing GitHub Actions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repository-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository security features
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secrets-and-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Secrets and variables
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Deployment environments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webhooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Webhooks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_5" id="__nav_4_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization and access
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Organization and access
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organization-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization settings and member privileges
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../teams-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Teams and access
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_6" id="__nav_4_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repositories
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_3_6">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Repositories
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pull-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Pull requests and merging
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repository-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository features and metadata
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repository-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Common repository patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  When something goes wrong
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  When something goes wrong
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Troubleshooting
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Troubleshooting
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reading-a-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reading a message
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#values-of-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Values of the configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organization and teams
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code scanning
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-and-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets and webhooks
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Repositories
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulesets-and-branch-protection-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rulesets and branch protection rules
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Actions policies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-with-otterdog-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Merging with <code>/otterdog merge</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-and-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Plan and apply
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-in-the-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Validation in the Playground
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unsupported/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unsupported settings
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../operating_otterdog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operating Otterdog
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Operating Otterdog
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating_otterdog/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Install
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating_otterdog/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Setup Otterdog
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating_otterdog/usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Usage cli tool
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operating_otterdog/organization-policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Organization-wide policies
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../threat-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Threat model
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../developing_otterdog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Developing Otterdog
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Developing Otterdog
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/development_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Development Setup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/contribution_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contribution Workflow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/coding_style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coding & Style Guidelines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Testing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/release_process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Release Process
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reading-a-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reading a message
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#values-of-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Values of the configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organization and teams
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code scanning
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-and-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets and webhooks
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Repositories
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulesets-and-branch-protection-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rulesets and branch protection rules
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Actions policies
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-with-otterdog-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Merging with <code>/otterdog merge</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-and-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Plan and apply
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-in-the-playground" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Validation in the Playground
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="././" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    When something goes wrong
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+  
+    <a href="https://github.com/eclipse-csi/otterdog/edit/main/docs/userguide/guides/troubleshooting.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<p>This page explains the messages of the validation, e.g. in the validation comment of a pull request or the output of
+<a href="../../../reference/operations/validate/"><code>otterdog validate</code></a>, the replies of
+<a href="#merging-with-otterdog-merge"><code>/otterdog merge</code></a> when a pull request cannot be auto-merged, and the frequent
+surprises of <code>plan</code> and <code>apply</code>. Click on a message to see its cause and how to fix it.</p>
+<h2 id="reading-a-message">Reading a message<a class="headerlink" href="#reading-a-message" title="Permanent link">&para;</a></h2>
+<p>The validation reports three levels of messages, the color of each of its messages below is its level:</p>
+<!-- the levels of the messages, drawn by docs/assets/theme.css -->
+<div class="otterdog-outcomes">
+<div class="otterdog-outcome otterdog-outcome--ko">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m2.59 6L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41z"/></svg></span> Error</p>
+<p>The configuration cannot be applied: the validation of the pull request fails until it is fixed.</p>
+</div>
+<div class="otterdog-outcome otterdog-outcome--warn">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2"/></svg></span> Warning</p>
+<p>The configuration can be applied, but a setting is not applied as written.</p>
+</div>
+<div class="otterdog-outcome otterdog-outcome--info">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2z"/></svg></span> Info</p>
+<p>A remark, e.g. a resource that is skipped, only shown with <code>/otterdog validate info</code> on a pull request, or with
+<code>-v</code>.</p>
+</div>
+</div>
+<p>In the messages, <code>&lt;repository&gt;</code> stands for the resource reported by the validation, e.g. <code>repository[name="my-repo"]</code>.
+The surprises of <code>plan</code> and <code>apply</code>, which are not messages, are at the <a href="#plan-and-apply">end of the page</a>.</p>
+<h2 id="values-of-the-configuration">Values of the configuration<a class="headerlink" href="#values-of-the-configuration" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>A value has the wrong type</summary>
+<p><code>invalid value at '&lt;path&gt;': &lt;value&gt; is not of type '&lt;type&gt;'</code></p>
+<p><strong>Cause</strong>: the value does not have the type that otterdog expects, e.g. <code>"0"</code> instead of <code>0</code> for
+<code>required_approving_review_count</code>. otterdog checks the configuration against its JSON schemas before any other
+validation, and stops at such an error. Other messages of the same form report a missing property, or a property
+that is not allowed at this place.</p>
+<p><strong>Fix</strong>: use the type of the property given in the <a href="../../../reference/">Reference</a>.</p>
+</details>
+<details class="failure">
+<summary>A value is not one of the allowed ones</summary>
+<p><code>invalid value at '&lt;path&gt;': '&lt;value&gt;' is not one of [...]</code></p>
+<p><code>&lt;resource&gt; has '&lt;key&gt;' of value '&lt;value&gt;', while only values (...) are allowed.</code></p>
+<p><strong>Cause</strong>: the property only accepts the listed values, e.g. <code>'TITLE'</code> instead of <code>'PR_TITLE'</code> for
+<code>merge_commit_title</code>. The first message comes from the JSON schemas, the second one from the validation of the
+resource.</p>
+<p><strong>Fix</strong>: use one of the listed values, the Reference of the property lists the same ones.</p>
+</details>
+<details class="warning">
+<summary>A property is unknown</summary>
+<p><code>ignoring unknown properties found while validating organization config: Additional properties are not allowed
+('&lt;property&gt;' was unexpected)</code></p>
+<p><strong>Cause</strong>: the property is unknown to otterdog, usually because of a typo, e.g. <code>has_wikki</code> instead of <code>has_wiki</code>.
+It has no effect. This warning is shown by the otterdog CLI, not in the validation comment of a pull request.</p>
+<p><strong>Fix</strong>: fix its name, or remove it.</p>
+</details>
+<details class="warning">
+<summary>A setting is ignored</summary>
+<p><code>&lt;resource&gt; has '&lt;key&gt;' disabled, but '&lt;other key&gt;' is set to '&lt;value&gt;', setting will be ignored.</code></p>
+<p><code>&lt;repository&gt; has '&lt;key&gt;' enabled, while on organization level it is disabled, setting will be ignored.</code></p>
+<p><strong>Cause</strong>: the setting only applies when another one enables it, e.g. <code>review_dismissal_allowances</code> requires
+<code>restricts_review_dismissals</code>, and <code>selected_repositories</code> requires <code>visibility: 'selected'</code>. Or the organization
+restricts it for all repositories, e.g. the settings of GitHub Actions. The setting has no effect, the message is a
+warning or an info depending on the setting.</p>
+<p><strong>Fix</strong>: remove the setting, or enable the one it depends on.</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Catch these messages while editing</p>
+<p>The Playground of the otterdog dashboard checks the same schemas while a configuration is edited: it underlines
+the invalid values and the unknown properties in the editor, and lists them when their number is clicked in its
+status. Its <strong>Validate</strong> button also has the configuration validated by otterdog, with limitations, see
+<a href="#validation-in-the-playground">Validation in the Playground</a>.</p>
+</div>
+<h2 id="organization-and-teams">Organization and teams<a class="headerlink" href="#organization-and-teams" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>A feature requires the enterprise plan</summary>
+<p><code>use of organization rulesets requires an 'enterprise' plan, while this organization is currently on a '&lt;plan&gt;'
+plan.</code></p>
+<p><code>use of organization roles requires an 'enterprise' plan, while this organization is currently on a '&lt;plan&gt;'
+plan.</code></p>
+<p><code>&lt;ruleset|policy&gt; has 'enforcement' of value 'evaluate' which is only available for an 'enterprise' plan.</code></p>
+<p><code>enabling 'members_can_create_private_pages' requires an 'enterprise' plan.</code></p>
+<p><strong>Cause</strong>: these features are only available for organizations on the <code>enterprise</code> plan. otterdog only accepts
+organization rulesets with this plan, although GitHub also provides them with GitHub Team.</p>
+<p><strong>Fix</strong>:</p>
+<ul>
+<li>organization rulesets: use repository rulesets instead, see <a href="../organization-rulesets/">Organization-wide rulesets</a></li>
+<li><code>evaluate</code> of a ruleset: use <code>disabled</code> to prepare a ruleset without enforcing it, see
+  <a href="../organization-rulesets/#prepare-a-ruleset-before-enforcing-it">Prepare a ruleset before enforcing it</a></li>
+<li><code>evaluate</code> of an actions policy: start with the repositories whose workflows are known, see
+  <a href="../github-actions/#control-who-and-what-can-run-workflows">Control who and what can run workflows</a></li>
+<li>organization roles: grant the permissions with teams instead, see <a href="../teams-and-access/">Teams and access</a></li>
+<li><code>members_can_create_private_pages</code>: keep it disabled</li>
+</ul>
+</details>
+<details class="failure">
+<summary>A setting is required by the policies of the organization</summary>
+<p><code>&lt;resource&gt; has '&lt;key&gt;' set to '&lt;value&gt;' but '&lt;required value&gt;' is required.</code></p>
+<p><strong>Cause</strong>: the operators of otterdog require this value for all organizations, with a validation script of
+the default configuration, see
+<a href="../../../operating_otterdog/organization-policies/#enforce-settings-with-validation-scripts">Enforce settings with validation scripts</a>.</p>
+<p><strong>Fix</strong>: use the required value.</p>
+</details>
+<details class="failure">
+<summary>A team is managed by another tool</summary>
+<p><code>&lt;team&gt; has 'name' of value '&lt;name&gt;', which is not allowed due to exclusion pattern '&lt;pattern&gt;'.</code></p>
+<p><strong>Cause</strong>: the teams whose name matches the pattern are managed by another tool, e.g. the teams of the committers
+of a project, and otterdog does not manage them, see
+<a href="../../../operating_otterdog/organization-policies/#teams-managed-by-another-tool">Teams managed by another tool</a>.</p>
+<p><strong>Fix</strong>: give the team another name. To grant an excluded team access to a repository, list it in
+<code>team_permissions</code> of the repository, see
+<a href="../teams-and-access/#grant-teams-access-to-repositories">Grant teams access to repositories</a>.</p>
+</details>
+<h2 id="code-scanning">Code scanning<a class="headerlink" href="#code-scanning" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>A language is not a CodeQL identifier</summary>
+<p><code>invalid value at '&lt;path&gt;.code_scanning_default_languages[&lt;index&gt;]': '&lt;language&gt;' is not one of [...]</code></p>
+<p><strong>Cause</strong>: the value is not a CodeQL identifier, e.g. <code>java</code> or <code>kotlin</code> instead of <code>java-kotlin</code>.</p>
+<p><strong>Fix</strong>: use one of the values listed in <a href="../repository-security/#supported-languages">Supported languages</a>.</p>
+</details>
+<details class="failure">
+<summary>Languages are configured for a repository that does not exist yet</summary>
+<p><code>&lt;repository&gt; has 'code_scanning_default_languages' configured while the repository does not yet exist.</code></p>
+<p><strong>Cause</strong>: the languages are checked against the languages detected in the repository, which requires the
+repository to exist.</p>
+<p><strong>Fix</strong>: create the repository with default setup enabled but without languages: GitHub analyzes the languages it
+detects once code is pushed. Only configure a language in a second change if GitHub does not analyze it on its
+own, e.g. a compiled language, see <a href="../repository-security/#languages-analyzed-by-github">Languages analyzed by GitHub</a>.</p>
+</details>
+<details class="failure">
+<summary>A language is not detected in the repository</summary>
+<p><code>&lt;repository&gt; has 'code_scanning_default_languages' configured with '&lt;language&gt;' but this language is not
+detected in the repository. Detected languages: ...</code></p>
+<p><strong>Cause</strong>: GitHub does not detect any code of this language in the repository, e.g. <code>python</code> for a repository
+without Python code. The detected languages are listed in the message.</p>
+<p><strong>Fix</strong>: remove the language, or configure it once the code has been pushed.</p>
+</details>
+<h2 id="secrets-and-webhooks">Secrets and webhooks<a class="headerlink" href="#secrets-and-webhooks" title="Permanent link">&para;</a></h2>
+<details class="warning">
+<summary>The Codespaces secrets are not available</summary>
+<p><code>&lt;organization_codespaces|repository_codespaces&gt; secrets of '&lt;org&gt;' are not available (GitHub answers 404 for
+'&lt;path&gt;'), they are skipped</code></p>
+<p><strong>Cause</strong>: GitHub answers the Codespaces secrets endpoint with <code>404</code>, e.g. because Codespaces is not available for
+the organization. otterdog skips these secrets, the other secrets are not affected. This warning is shown by the
+otterdog CLI when it reads the live settings, e.g. with <code>plan</code>, <code>apply</code> or <code>import</code>. If the configuration declares
+Codespaces secrets, the operation fails instead with <code>declares ... secrets which cannot be managed</code>, as they cannot
+be compared with the live state.</p>
+<p><strong>Fix</strong>: remove the Codespaces secrets from the configuration, or make the endpoint available. To not read
+Codespaces secrets at all, use a default configuration without <code>newOrgCodespacesSecret</code> and
+<code>newRepoCodespacesSecret</code>.</p>
+</details>
+<details class="info">
+<summary>A secret or a webhook only has a dummy value</summary>
+<p><code>&lt;secret&gt; only has a dummy value, resource will be skipped.</code></p>
+<p><code>&lt;webhook&gt; has a secret set, but only a dummy secret '********' is provided in the configuration, will be
+skipped.</code></p>
+<p><strong>Cause</strong>: the value is redacted, usually after an <code>import</code>, as GitHub never discloses secret values. otterdog
+does not change the resource.</p>
+<p><strong>Fix</strong>: to manage the value, replace it with a reference to a credential provider, see
+<a href="../secrets-and-variables/#secrets-managed-outside-otterdog">Secrets managed outside otterdog</a>.</p>
+</details>
+<details class="warning">
+<summary>A secret value is written in the configuration</summary>
+<p><code>&lt;secret&gt; has a value '&lt;value&gt;' that does not use a credential provider.</code></p>
+<p><code>&lt;webhook&gt; has a secret '&lt;value&gt;' that does not use a credential provider.</code></p>
+<p><strong>Cause</strong>: the value is written in the configuration, which is stored in a repository.</p>
+<p><strong>Fix</strong>: store it in a credential provider and reference it, see
+<a href="../secrets-and-variables/#reference-secret-values-never-write-them">Reference secret values, never write them</a>.</p>
+</details>
+<details class="failure">
+<summary>The name of a secret or a variable is invalid</summary>
+<p><code>&lt;secret&gt; starts with prefix 'GITHUB_' which is not allowed for secrets.</code></p>
+<p><code>&lt;secret&gt; has 'name' of value '&lt;name&gt;' which is not uppercase, while only uppercase names are allowed for secrets.</code></p>
+<p><strong>Cause</strong>: GitHub reserves the prefix <code>GITHUB_</code>, and normalizes the names of secrets and variables to uppercase.
+The same messages report the names of variables.</p>
+<p><strong>Fix</strong>: rename it, e.g. <code>MY_TOKEN</code> rather than <code>GITHUB_TOKEN</code> or <code>my_token</code>.</p>
+</details>
+<details class="failure">
+<summary>The organization is not allowed to use a secret</summary>
+<p><code>&lt;secret&gt; references secret '&lt;reference&gt;' that the organization is not allowed to use: &lt;reason&gt;.</code></p>
+<p><strong>Cause</strong>: the operators of otterdog restrict the secrets that each organization can reference in a credential
+provider, the reason gives the allowed references. It is a warning while the restriction is not enforced, see
+<a href="../../../operating_otterdog/setup/#secret-access-policy">Secret access policy</a>.</p>
+<p><strong>Fix</strong>: reference a secret of the organization, or ask the operators of otterdog to allow the reference.</p>
+</details>
+<details class="failure">
+<summary>Private visibility on the free plan</summary>
+<p><code>&lt;secret&gt; has 'visibility' of value 'private', which is not available for an organization with free plan.</code></p>
+<p><strong>Cause</strong>: organizations on the free plan cannot restrict organization secrets and variables to private
+repositories.</p>
+<p><strong>Fix</strong>: use <code>selected</code> with the list of repositories instead.</p>
+</details>
+<h2 id="repositories">Repositories<a class="headerlink" href="#repositories" title="Permanent link">&para;</a></h2>
+<details class="warning">
+<summary>A public repository cannot disable forking</summary>
+<p><code>public &lt;repository&gt; has 'allow_forking' disabled which is not permitted.</code></p>
+<p><strong>Cause</strong>: public repositories can always be forked.</p>
+<p><strong>Fix</strong>: remove <code>allow_forking: false</code> from public repositories.</p>
+</details>
+<details class="failure">
+<summary>The organization does not allow forking private repositories</summary>
+<p><code>private &lt;repository&gt; has 'allow_forking' enabled, while the organization disables
+'members_can_fork_private_repositories'.</code></p>
+<p><strong>Cause</strong>: the organization does not allow forking private repositories.</p>
+<p><strong>Fix</strong>: disable <code>allow_forking</code> for the repository, or allow forks in the settings of the organization.</p>
+</details>
+<details class="warning">
+<summary>The wiki of a private repository requires a paid plan</summary>
+<p><code>private &lt;repository&gt; has 'has_wiki' enabled, which requires at least GitHub Team billing, currently using 'free'
+plan.</code></p>
+<p><strong>Cause</strong>: wikis of private repositories require a paid GitHub plan.</p>
+<p><strong>Fix</strong>: disable <code>has_wiki</code> for private repositories, see
+<a href="../repository-features/#enable-only-the-features-that-are-used">Enable only the features that are used</a>.</p>
+</details>
+<details class="warning">
+<summary>The organization disables projects</summary>
+<p><code>&lt;repository&gt; has 'has_projects' enabled, while the organization disables 'has_organization_projects', setting
+will be ignored.</code></p>
+<p><strong>Cause</strong>: projects are disabled for the whole organization.</p>
+<p><strong>Fix</strong>: disable <code>has_projects</code> for the repository, or enable <code>has_organization_projects</code> for the organization.</p>
+</details>
+<details class="warning">
+<summary>The organization requires a sign-off for web commits</summary>
+<p><code>&lt;repository&gt; has 'web_commit_signoff_required' disabled, while the organization requires it, setting will be
+ignored.</code></p>
+<p><strong>Cause</strong>: the setting of the organization applies to all repositories, see
+<a href="../organization-settings/#require-a-sign-off-for-commits-made-in-the-web-interface">Require a sign-off for commits made in the web interface</a>.</p>
+<p><strong>Fix</strong>: remove the setting from the repository.</p>
+</details>
+<details class="failure">
+<summary>A topic is invalid</summary>
+<p><code>&lt;repository&gt; has defined an invalid topic '&lt;topic&gt;'. Only lower-case, numbers and '-' are allowed characters.</code></p>
+<p><strong>Cause</strong>: topics follow the format of GitHub, e.g. <code>github-actions</code> instead of <code>GitHub Actions</code>.</p>
+<p><strong>Fix</strong>: rename the topic, see <a href="../repository-features/#describe-repositories">Describe repositories</a>.</p>
+</details>
+<details class="failure">
+<summary>The title and message of squash commits do not go together</summary>
+<p><code>&lt;repository&gt; has ('squash_merge_commit_title', 'squash_merge_commit_message') of value (...), while only
+combinations (...) are allowed.</code></p>
+<p><strong>Cause</strong>: GitHub only accepts some combinations of the title and the message of squash and merge commits.</p>
+<p><strong>Fix</strong>: use one of the combinations, see
+<a href="../pull-requests/#control-the-messages-of-merge-and-squash-commits">Control the messages of merge and squash commits</a>.</p>
+</details>
+<details class="failure">
+<summary>A custom property is not defined by the organization</summary>
+<p><code>&lt;repository&gt; defines an unknown custom property with key '&lt;key&gt;'.</code></p>
+<p><strong>Cause</strong>: a repository can only set the custom properties defined by the organization in
+<code>settings.custom_properties</code>.</p>
+<p><strong>Fix</strong>: define the property with <a href="../../../reference/organization/custom-property/">newCustomProperty</a>, or fix its
+name.</p>
+</details>
+<details class="failure">
+<summary>Push protection requires secret scanning</summary>
+<p><code>&lt;repository&gt; has 'secret_scanning' disabled, while 'secret_scanning_push_protection' is enabled.</code></p>
+<p><strong>Cause</strong>: push protection blocks the secrets found by secret scanning, it cannot work without it.</p>
+<p><strong>Fix</strong>: enable <code>secret_scanning</code>, or disable <code>secret_scanning_push_protection</code>, see
+<a href="../repository-security/#secret-scanning-and-push-protection">Secret scanning and push protection</a>.</p>
+</details>
+<details class="failure">
+<summary>GitHub Pages are disabled for the site of the organization</summary>
+<p><code>&lt;repository&gt; has 'gh_pages_build_type' disabled but the repo hosts the organization site and GitHub pages will be
+enabled automatically.</code></p>
+<p><strong>Cause</strong>: GitHub enables GitHub Pages for the repository <code>&lt;organization&gt;.github.io</code> on its own.</p>
+<p><strong>Fix</strong>: configure GitHub Pages as given in the message, see
+<a href="../repository-patterns/#websites-with-github-pages">Websites with GitHub Pages</a>.</p>
+</details>
+<details class="info">
+<summary>GitHub Pages without their environment</summary>
+<p><code>&lt;repository&gt; hosts the organization site but no corresponding 'github-pages' environment, please add such an
+environment.</code></p>
+<p><code>&lt;repository&gt; has 'gh_pages_build_type' with value '&lt;value&gt;', but no corresponding 'github-pages' environment,
+please add such an environment.</code></p>
+<p><strong>Cause</strong>: GitHub deploys GitHub Pages through an environment named <code>github-pages</code>, which it creates on its own.
+As long as it is not in the configuration, <code>plan</code> reports it as a resource to delete.</p>
+<p><strong>Fix</strong>: add the environment given in the message, see <a href="../environments/#github-pages">GitHub Pages</a>.</p>
+</details>
+<h2 id="rulesets-and-branch-protection-rules">Rulesets and branch protection rules<a class="headerlink" href="#rulesets-and-branch-protection-rules" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>A ruleset targets a branch without its full ref</summary>
+<p><code>&lt;ruleset&gt; has an invalid 'include_refs' pattern '&lt;pattern&gt;', while only values ('refs/heads/*',
+'~DEFAULT_BRANCH', '~ALL') are allowed</code></p>
+<p><strong>Cause</strong>: the branches of a ruleset are matched by their full ref. The same applies to <code>exclude_refs</code>.</p>
+<p><strong>Fix</strong>: write the full ref, e.g. <code>refs/heads/1.2.x</code> rather than <code>1.2.x</code>, or <code>refs/heads/release/*</code> for a pattern,
+and <code>refs/tags/</code> for the tags of a ruleset with <code>target: 'tag'</code>, see
+<a href="../../../reference/organization/repository/ref-matcher/">RefMatcher</a>.</p>
+</details>
+<details class="failure">
+<summary>A rule does not apply to the ruleset</summary>
+<p><code>&lt;ruleset&gt; has '&lt;key&gt;' set, while it is only supported by rulesets with target '&lt;target&gt;'.</code></p>
+<p><code>&lt;ruleset&gt; has '&lt;key&gt;' set, while it is not supported by rulesets with target 'push'.</code></p>
+<p><code>&lt;ruleset&gt; has '&lt;key&gt;' set, while it is only supported by repository rulesets.</code></p>
+<p><code>&lt;ruleset&gt; has 'required_workflows' set, while it is only supported by organization rulesets.</code></p>
+<p><strong>Cause</strong>: GitHub supports each rule for some rulesets only, e.g. <code>tag_name_pattern</code> for <code>target: 'tag'</code>, the push
+rules for <code>target: 'push'</code>, or <code>required_workflows</code> for organization rulesets.</p>
+<p><strong>Fix</strong>: move the rule to a ruleset that supports it, or remove it. The Reference gives the rulesets supporting each
+rule, see <a href="../../../reference/organization/repository/ruleset/">Repository Ruleset</a>.</p>
+</details>
+<details class="warning">
+<summary>A pattern of repositories matches no repository</summary>
+<p><code>&lt;ruleset&gt; has an 'include_repo_names' pattern '&lt;pattern&gt;' that does not match any existing repository</code></p>
+<p><strong>Cause</strong>: no repository of the organization matches the pattern of an organization ruleset, usually because of a
+typo, or because the repository does not exist yet. The same applies to <code>exclude_repo_names</code>.</p>
+<p><strong>Fix</strong>: fix the pattern, see <a href="../organization-rulesets/#target-repositories-by-name">Target repositories by name</a>.</p>
+</details>
+<details class="failure">
+<summary>Push rules on a public repository</summary>
+<p><code>&lt;ruleset&gt; has 'restricted_file_paths' set, while push rules are only supported by private and internal
+repositories.</code></p>
+<p><strong>Cause</strong>: GitHub rejects the push rules, e.g. <code>restricted_file_paths</code> or <code>max_file_size</code>, of a ruleset of a public
+repository when the ruleset is applied, whatever the plan of the organization. Push rulesets also require at least
+GitHub Team.</p>
+<p><strong>Fix</strong>: remove the push ruleset, or make the repository private, see
+<a href="../branch-protection/#restrict-the-files-that-can-be-pushed">Restrict the files that can be pushed</a>.</p>
+</details>
+<details class="failure">
+<summary>The required deployment environment is not in the repository</summary>
+<p><code>&lt;ruleset&gt; requires deployment environment '&lt;environment&gt;' which is not defined in the repository itself.</code></p>
+<p><strong>Cause</strong>: a ruleset or branch protection rule that requires a successful deployment can only reference an
+environment of the same repository.</p>
+<p><strong>Fix</strong>: define the environment in the repository, see
+<a href="../environments/#require-a-successful-deployment-before-merging">Require a successful deployment before merging</a>.</p>
+</details>
+<h2 id="actions-policies">Actions policies<a class="headerlink" href="#actions-policies" title="Permanent link">&para;</a></h2>
+<details class="failure">
+<summary>The workflows of a policy are invalid</summary>
+<p><code>&lt;policy&gt; has empty 'include_workflows' and 'exclude_workflows', while at least one pattern is required, use
+'~ALL' to target all workflows.</code></p>
+<p><code>&lt;policy&gt; has 'include_workflows' combining '~ALL' with other patterns, while '~ALL' must be used on its own.</code></p>
+<p><code>&lt;policy&gt; has '~ALL' in 'exclude_workflows', while it is only allowed in 'include_workflows'.</code></p>
+<p><strong>Cause</strong>: a policy targets the workflows matching <code>include_workflows</code>, except the ones matching
+<code>exclude_workflows</code>, and needs at least one pattern. <code>~ALL</code>, which targets all the workflows, is only allowed on
+its own in <code>include_workflows</code>.</p>
+<p><strong>Fix</strong>: use <code>~ALL</code> on its own, or list the workflow files, e.g. <code>.github/workflows/release.yml</code>, see
+<a href="../github-actions/#control-who-and-what-can-run-workflows">Control who and what can run workflows</a>.</p>
+</details>
+<details class="failure">
+<summary>An allowed actor is invalid</summary>
+<p><code>&lt;policy&gt; has an invalid allowed actor '&lt;actor&gt;', only users or bots ('@&lt;login&gt;'), teams ('@&lt;org&gt;/&lt;team-slug&gt;'),
+roles ('#&lt;role&gt;'), apps ('&lt;app-slug&gt;') or actors referenced by their type and id ('&lt;type&gt;:&lt;id&gt;') are supported.</code></p>
+<p><code>&lt;policy&gt; has allowed actor '&lt;actor&gt;' with unknown role '&lt;role&gt;', only roles ('RepositoryAdmin' | 'Write' |
+'Maintain' | 'OrganizationAdmin') or the id of a custom role are supported.</code></p>
+<p><code>&lt;policy&gt; has allowed actor '&lt;actor&gt;' with unknown type '&lt;type&gt;', only types (&lt;types&gt;) are supported.</code></p>
+<p><strong>Cause</strong>: an actor of <code>allowed_actors</code> is written like a bypass actor of a ruleset: <code>@</code> and the login for a user
+or a bot, <code>@</code> and the slug with the organization for a team, <code>#</code> for a role, the slug alone for an app. An email
+address, e.g. <code>alice@example.org</code>, or a role that GitHub does not provide, e.g. <code>#Read</code>, is rejected.</p>
+<p><strong>Fix</strong>: fix the actor, see <a href="../../../reference/organization/repository/allowed-actor/">AllowedActor</a>.</p>
+</details>
+<details class="warning">
+<summary>A policy does not require any rule</summary>
+<p><code>&lt;policy&gt; does not require any rule, set one of ('allowed_actors' | 'allowed_events').</code></p>
+<p><strong>Cause</strong>: <code>allowed_actors</code> and <code>allowed_events</code> are both <code>null</code>, their default value, which does not require the
+rule: the policy blocks nothing.</p>
+<p><strong>Fix</strong>: set the actors or the events allowed to run the targeted workflows, see
+<a href="../github-actions/#control-who-and-what-can-run-workflows">Control who and what can run workflows</a>.</p>
+</details>
+<details class="warning">
+<summary>A policy blocks all the targeted workflows</summary>
+<p><code>&lt;policy&gt; has an empty 'allowed_actors', no actor is allowed to run the targeted workflows.</code></p>
+<p><code>&lt;policy&gt; has an empty 'allowed_events', no event is allowed to trigger the targeted workflows.</code></p>
+<p><strong>Cause</strong>: an empty list allows nothing, unlike <code>null</code>, which does not require the rule.</p>
+<p><strong>Fix</strong>: list the allowed actors or events, or set the rule to <code>null</code>.</p>
+</details>
+<details class="warning">
+<summary>An event is unknown</summary>
+<p><code>&lt;policy&gt; has 'allowed_events' containing unknown event '&lt;event&gt;', GitHub might reject it.</code></p>
+<p><strong>Cause</strong>: the event is not a trigger of workflows known to otterdog, usually because of a typo, or because it is
+an activity type, e.g. <code>pull_request_closed</code> instead of <code>pull_request</code>.</p>
+<p><strong>Fix</strong>: use the name of the event, see
+<a href="https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows">Events that trigger workflows</a>.</p>
+</details>
+<details class="warning">
+<summary>An organization policy targets no repository</summary>
+<p><code>&lt;policy&gt; has an empty 'include_repo_names', the policy does not apply to any repository, use '~ALL' to target
+all repositories.</code></p>
+<p><code>&lt;policy&gt; has an 'include_repo_names' pattern '&lt;pattern&gt;' that does not match any existing repository</code></p>
+<p><code>&lt;policy&gt; has 'protect_repo_names' set to 'True' but 'include_repo_names' and 'exclude_repo_names' are empty.</code></p>
+<p><strong>Cause</strong>: <code>newOrgActionsPolicy</code> targets no repository by default, its <code>include_repo_names</code> is empty. A pattern can
+also match no repository, usually because of a typo, or because the repository does not exist yet. The same
+applies to <code>exclude_repo_names</code>.</p>
+<p><strong>Fix</strong>: list the repositories in <code>include_repo_names</code>, or use <code>~ALL</code> to target all of them, see
+<a href="../github-actions/#control-who-and-what-can-run-workflows">Control who and what can run workflows</a>.</p>
+</details>
+<details class="warning">
+<summary>An organization policy targets repositories by custom property or id</summary>
+<p><code>actions policy '&lt;name&gt;' targets repositories by &lt;repository_property|repository_id&gt;, which is not supported, its
+targeting is kept on update</code></p>
+<p><strong>Cause</strong>: the policy was created in the GitHub web interface with a targeting that otterdog does not support.
+otterdog keeps this targeting when it updates the policy, and does not compare its <code>include_repo_names</code>,
+<code>exclude_repo_names</code> and <code>protect_repo_names</code>. This warning is shown by the otterdog CLI when it reads the live
+settings, e.g. with <code>plan</code>, <code>apply</code> or <code>import</code>.</p>
+<p><strong>Fix</strong>: nothing, to keep this targeting, see <a href="../../unsupported/">Unsupported settings</a>. To manage the targeting
+with otterdog, target the repositories by name in the web interface first.</p>
+</details>
+<details class="warning">
+<summary>A policy with the same name already exists</summary>
+<p><code>actions policy '&lt;name&gt;' already exists for org '&lt;org&gt;', updating it</code></p>
+<p><code>actions policy '&lt;name&gt;' already exists for repo '&lt;org&gt;/&lt;repo&gt;', updating it</code></p>
+<p><strong>Cause</strong>: GitHub does not allow two policies with the same name. When the configuration adds a policy whose name
+is used by a policy it did not know, e.g. created in the web interface or by a previous apply that failed,
+otterdog updates that policy instead. This warning is shown in the log of the apply.</p>
+<p><strong>Fix</strong>: nothing, the policy is updated as configured.</p>
+</details>
+<h2 id="merging-with-otterdog-merge">Merging with <code>/otterdog merge</code><a class="headerlink" href="#merging-with-otterdog-merge" title="Permanent link">&para;</a></h2>
+<p>When a pull request cannot be auto-merged, <code>/otterdog merge</code> replies with a warning listing the
+<a href="../../workflow/#can-my-pull-request-be-auto-merged">conditions of the auto-merge</a> that are not met, in this order.</p>
+<details class="warning">
+<summary>The pull request is closed</summary>
+<p><code>pull request is &lt;closed|merged&gt;, only open pull requests can be managed</code></p>
+<p><strong>Cause</strong>: only an open pull request can be merged.</p>
+<p><strong>Fix</strong>: reopen a closed pull request. A merged pull request is applied, see <a href="../../workflow/#5-apply">Apply</a>.</p>
+</details>
+<details class="warning">
+<summary>The pull request is not validated yet</summary>
+<p><code>pull request has not been validated yet, run /otterdog validate first</code></p>
+<p><strong>Cause</strong>: a draft is not validated automatically, or the validation did not run.</p>
+<p><strong>Fix</strong>: mark the draft as ready for review, or comment <code>/otterdog validate</code>. Then comment <code>/otterdog merge</code> again.</p>
+</details>
+<details class="warning">
+<summary>The pull request is not valid</summary>
+<p><code>pull request is not valid, check the /otterdog validate comment for details and push a fix</code></p>
+<p><strong>Cause</strong>: the last validation found errors.</p>
+<p><strong>Fix</strong>: fix the errors listed in the validation comment, see their messages on this page, and push: the pull
+request is validated again.</p>
+</details>
+<details class="warning">
+<summary>It is unknown whether the pull request can be auto-merged</summary>
+<p><code>it has not been checked whether the pull request supports auto merge</code></p>
+<p><strong>Cause</strong>: the last validation did not record whether the changes can be auto-merged.</p>
+<p><strong>Fix</strong>: comment <code>/otterdog validate</code>, then <code>/otterdog merge</code> again.</p>
+</details>
+<details class="warning">
+<summary>The changes need an admin</summary>
+<p><code>pull request cannot be automatically merged (contains secrets, requires web UI changes, may incur costs,
+includes deletions or touches non-configuration files)</code></p>
+<p><strong>Cause</strong>: the pull request contains changes that otterdog does not apply on its own, the validation comment lists
+them.</p>
+<p><strong>Fix</strong>: a member of the admin teams reviews and merges the pull request. To have the rest auto-merged, move these
+changes to a pull request of their own, see
+<a href="../../workflow/#changes-that-prevent-the-auto-merge">Changes that prevent the auto-merge</a>.</p>
+</details>
+<details class="warning">
+<summary>Neither the author nor an approval allows the auto-merge</summary>
+<p><code>The author is not a member of &lt;approval teams&gt; or of &lt;admin teams&gt;</code></p>
+<p><code>No approval from a member of &lt;approval teams&gt; or of &lt;admin teams&gt; &lt;has been submitted yet|was found&gt;</code></p>
+<p><strong>Cause</strong>: the auto-merge requires an author or an approval from a member of these teams, the pull request has
+neither.</p>
+<p><strong>Fix</strong>: ask a member of an approval team for a review, then comment <code>/otterdog merge</code> again: otterdog checks the
+approvals again.</p>
+</details>
+<details class="warning">
+<summary>The teams of the author are unknown</summary>
+<p><code>The author's team membership is unknown (comment /otterdog team-info on the pull request to refresh it)</code></p>
+<p><strong>Cause</strong>: otterdog has not retrieved the teams of the author, e.g. because the retrieval failed. It never does for
+a bot, whose pull requests need an approval.</p>
+<p><strong>Fix</strong>: comment <code>/otterdog team-info</code>, then <code>/otterdog merge</code> again.</p>
+</details>
+<details class="warning">
+<summary>The comment comes from someone who cannot merge</summary>
+<p><code>Only the author of the pull request, a member of &lt;approval teams&gt;, or a member of &lt;admin teams&gt; is allowed to
+auto-merge.</code></p>
+<p><strong>Cause</strong>: <code>/otterdog merge</code> was commented by someone else than the author, who is not a member of an approval or
+admin team.</p>
+<p><strong>Fix</strong>: let the author, or a member of these teams, comment <code>/otterdog merge</code>.</p>
+</details>
+<details class="question">
+<summary>Nothing happens after <code>/otterdog merge</code></summary>
+<p><strong>Cause</strong>: the comment does not start with the command, or GitHub refused the merge, e.g. because of a conflict
+with <code>main</code>.</p>
+<p><strong>Fix</strong>: start the comment with <code>/otterdog merge</code>. Otherwise, update the branch with <code>main</code> and comment
+<code>/otterdog merge</code> again.</p>
+</details>
+<h2 id="plan-and-apply">Plan and apply<a class="headerlink" href="#plan-and-apply" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary><code>plan</code> shows changes that nobody made in the configuration</summary>
+<p><strong>Cause</strong>: the configuration of the organization only contains the differences to its default configuration. A
+change of the default configuration, or a setting changed in the GitHub web interface, shows up in <code>plan</code>.</p>
+<p><strong>Fix</strong>: see <a href="../inheritance/">Inherited and explicit values</a>.</p>
+</details>
+<details class="question">
+<summary>A ruleset, branch protection rule or actions policy created in the GitHub web interface is deleted</summary>
+<p><strong>Cause</strong>: otterdog manages all the protections and actions policies of the organization and of the configured
+repositories, one that is not part of the configuration is removed when deletions are applied.</p>
+<p><strong>Fix</strong>: add it to the configuration instead, see the warning in
+<a href="../rulesets-vs-branch-protection/#otterdog-specifics">Otterdog specifics</a>.</p>
+</details>
+<details class="question">
+<summary>A language removed from <code>code_scanning_default_languages</code> is still analyzed</summary>
+<p><strong>Cause</strong>: the configured languages are the minimum set of languages to analyze: the languages that GitHub
+analyzes in addition are kept, and <code>plan</code> does not report them.</p>
+<p><strong>Fix</strong>: to stop analyzing a language, change the default setup in the GitHub web interface, see
+<a href="../repository-security/#languages-analyzed-by-github">Languages analyzed by GitHub</a>.</p>
+</details>
+<details class="question">
+<summary>A rotated secret is not updated on GitHub</summary>
+<p><strong>Cause</strong>: otterdog cannot detect that the value of a credential changed in the credential provider.</p>
+<p><strong>Fix</strong>: update the secret explicitly, see <a href="../secrets-and-variables/#updating-secret-values">Updating secret values</a>.</p>
+</details>
+<details class="question">
+<summary>Changes to some organization settings are not applied automatically</summary>
+<p><strong>Cause</strong>: some settings, e.g. <code>members_can_create_teams</code> or the discussions of the organization, can only be
+changed through the GitHub web interface, which requires the credentials of a user that can log in to GitHub.
+<code>plan</code> and <code>apply</code> skip them with <code>--no-web-ui</code>.</p>
+<p><strong>Fix</strong>: such changes merged in a pull request of the configuration repository are applied manually by an admin,
+see <a href="../organization-settings/#restrict-what-members-can-do">Restrict what members can do</a>.</p>
+</details>
+<details class="question">
+<summary>Loading a page of the GitHub web interface times out</summary>
+<p><code>Page.goto: Timeout 10000ms exceeded</code></p>
+<p><strong>Cause</strong>: the settings only available through the GitHub web interface are retrieved with a headless browser,
+which waits up to 10 seconds for a page to load, too short on a slow connection.</p>
+<p><strong>Fix</strong>: increase the timeout, in milliseconds, with the environment variable <code>OTTERDOG_WEB_TIMEOUT</code>, e.g.
+<code>export OTTERDOG_WEB_TIMEOUT=60000</code>, or skip these settings with <code>--no-web-ui</code>, see
+<a href="../../../operating_otterdog/setup/#environment-variables">Environment variables</a>.</p>
+</details>
+<h2 id="validation-in-the-playground">Validation in the Playground<a class="headerlink" href="#validation-in-the-playground" title="Permanent link">&para;</a></h2>
+<p>The <strong>Validate</strong> button of the Playground of the otterdog dashboard has the configuration of an organization, created
+by <code>orgs.newOrg(...)</code>, validated by otterdog on the server, with the default configuration of the Playground. The
+button is not shown for a snippet, e.g. creating a repository, and is disabled for a configuration failing to evaluate
+or having schema errors. The evaluated configuration is only sent to the server when the button is clicked, it is
+neither stored nor applied.</p>
+<p>A configuration without problem in the Playground can still be rejected by the validation of its pull request:</p>
+<!-- what the Playground and the pull request check, drawn by docs/assets/theme.css -->
+<div class="otterdog-outcomes">
+<div class="otterdog-outcome otterdog-outcome--ok">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg></span> The Playground checks</p>
+<ul>
+<li>the <strong>schemas</strong> while you edit: the types, the allowed values and the unknown properties</li>
+<li>with <strong>Validate</strong>, the messages of <code>validate</code> listed on this page, the infos included, at the property they are
+  about, otherwise at the repository or the organization</li>
+<li>with <strong>Propose on GitHub</strong>, the same validation first: it asks to confirm before proposing a configuration with
+  errors, or that cannot be validated</li>
+</ul>
+</div>
+<div class="otterdog-outcome otterdog-outcome--warn">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 3a3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83v6.34c1.17.41 2 1.52 2 2.83a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V8.83A2.99 2.99 0 0 1 3 6a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m0 12a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m15 1a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V7h-2v3.25L10.75 6 15 1.75V5h2a2 2 0 0 1 2 2v8.17c1.17.41 2 1.52 2 2.83m-3-1a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Only the pull request checks</p>
+<ul>
+<li>the <strong>validations depending on GitHub</strong>: the members of a team with <code>skip_non_organization_members</code> being members
+  of the organization, and the languages of <code>code_scanning_default_languages</code> being detected in the repository</li>
+<li>the <strong>plan</strong>: whether the changes require secrets, settings of the Web UI, or remove resources, which prevents the
+  auto-merge. The Playground of a project shows the changes to the current configuration, though</li>
+<li>the <strong>comparison with GitHub</strong>, like <code>/otterdog check-sync</code></li>
+<li>the <strong>default configuration of your organization</strong>: the global Playground validates with its own, use the
+  Playground of your project instead</li>
+</ul>
+</div>
+</div>
+<p>Some checks are only done when the changes are applied, by <code>validate</code> neither: the teams, users and apps of
+<code>bypass_actors</code> and of <code>allowed_actors</code> must exist, and GitHub can reject a value that otterdog accepts.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../repository-patterns/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Common repository patterns">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Common repository patterns
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../unsupported/" class="md-footer__link md-footer__link--next" aria-label="Next: Unsupported settings">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Unsupported settings
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      otterdog is an Eclipse Foundation project licensed under the Eclipse Public License 2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/eclipse-csi/otterdog" target="_blank" rel="noopener" title="otterdog on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/otterdog/" target="_blank" rel="noopener" title="otterdog on PyPI" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://otterdog.eclipse.org" target="_blank" rel="noopener" title="the otterdog dashboard of the Eclipse Foundation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-layout-dashboard" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      
+<div class="md-progress" data-md-component="progress" role="progressbar" aria-label="Loading"></div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.action.edit","content.code.annotate","content.code.copy","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow"],"redirect":"../../../redirect.json","search":"../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d31f0ffa.min.js"></script>
+      
+    
+  </body>
+</html>
