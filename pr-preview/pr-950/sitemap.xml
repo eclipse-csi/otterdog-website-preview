@@ -85,6 +85,9 @@
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/</loc>
       </url>
       <url>
+        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/actions-policy/</loc>
+      </url>
+      <url>
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/code-security-configuration/</loc>
       </url>
       <url>
@@ -103,7 +106,13 @@
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/repository/</loc>
       </url>
       <url>
+        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/repository/actions-policy/</loc>
+      </url>
+      <url>
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/repository/actor/</loc>
+      </url>
+      <url>
+        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/repository/allowed-actor/</loc>
       </url>
       <url>
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/reference/organization/repository/branch-or-tag/</loc>
@@ -193,9 +202,6 @@
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/</loc>
       </url>
       <url>
-        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/adding/</loc>
-      </url>
-      <url>
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/guides/</loc>
       </url>
       <url>
@@ -253,10 +259,7 @@
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/guides/webhooks/</loc>
       </url>
       <url>
-        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/removal/</loc>
-      </url>
-      <url>
-        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/renaming/</loc>
+        <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/resources/</loc>
       </url>
       <url>
         <loc>https://csi.eclipse.dev/otterdog-website-preview/pr-preview/pr-950/userguide/unsupported/</loc>
