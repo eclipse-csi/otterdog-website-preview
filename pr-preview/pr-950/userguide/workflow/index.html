@@ -385,6 +385,8 @@
       
         
       
+        
+      
     
     
     
@@ -4312,6 +4314,8 @@
       
         
       
+        
+      
     
     
     
@@ -4488,6 +4492,33 @@
     
   
   Testing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing_otterdog/ai_agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AI Coding Agents
 
     
   </span>
@@ -4899,7 +4930,7 @@ into a pull request.</p>
 <div class="admonition success">
 <p class="admonition-title">Merge it yourself with <code>/otterdog merge</code> when your pull request</p>
 <ul>
-<li>passed the <strong>validation</strong> of otterdog,</li>
+<li>passed the <strong>validation</strong> of otterdog for its latest commit,</li>
 <li>adds <strong>no secret</strong>, changes <strong>no setting of the Web UI</strong>, incurs <strong>no cost</strong>, <strong>removes nothing</strong> and only
   modifies <code>otterdog/&lt;org&gt;.jsonnet</code>,</li>
 <li>is <strong>written or approved by a member of an approval team</strong>, e.g. the project leads, or of an admin team.</li>
@@ -5071,10 +5102,11 @@ organization in an editor that evaluates it as you type and documents its proper
 <li><strong>Playground</strong>: the content you paste replaces the whole file, so it reverts the changes merged since you
   opened the Playground, e.g. a repository added in the meantime shows up as removed, which also prevents the
   auto-merge. Reload the Playground before editing if the configuration may have changed since you opened it.</li>
-<li><strong>git</strong>: your branch does not need to be up to date, otterdog validates the result of merging it into <code>main</code>.
-  If GitHub cannot merge it, e.g. because of a conflict, otterdog compares your branch with the <strong>latest</strong> commit
-  of <code>main</code> instead: the changes merged since you started then appear as reverted, and the validation comment asks
-  you to update the branch. Rebase your branch on <code>main</code>, or merge <code>main</code> into it, and push again.</li>
+<li><strong>git</strong>: your branch does not need to be up to date, otterdog validates the merge of your latest commit into
+  <code>main</code> that GitHub prepares when you push, and the validation comment tells which commit of <code>main</code> it merges
+  into. If GitHub cannot merge it, e.g. because of a conflict, otterdog compares your branch with the <strong>latest</strong>
+  commit of <code>main</code> instead: the changes merged since you started then appear as reverted, and the validation
+  comment asks you to update the branch. Rebase your branch on <code>main</code>, or merge <code>main</code> into it, and push again.</li>
 </ul>
 </div>
 <h2 id="2-open-a-pull-request">2. Open a pull request<a class="headerlink" href="#2-open-a-pull-request" title="Permanent link">&para;</a></h2>
@@ -5190,8 +5222,8 @@ comment explains why, and notifies the admin teams.</p>
 </div>
 <div class="otterdog-timeline__event">
 <p><span class="twemoji otterdog-timeline__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m-2-4-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9"/></svg></span></p>
-<p><strong>1. Open, and validated without errors?</strong>
-<span class="otterdog-timeline__else">Otherwise: fix the configuration and push, or mark the draft as ready for review.</span></p>
+<p><strong>1. Open, and its latest commit validated without errors?</strong>
+<span class="otterdog-timeline__else">Otherwise: fix the configuration and push, mark the draft as ready for review, or wait for the validation of your latest commit.</span></p>
 </div>
 <div class="otterdog-timeline__event">
 <p><span class="twemoji otterdog-timeline__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23.5 17-5 5-3.5-3.5 1.5-1.5 2 2 3.5-3.5zm-10.41 3H6V4h7v5h5v4.09c.33-.05.66-.09 1-.09s.67.04 1 .09V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.11.89 2 2 2h7.81c-.35-.61-.6-1.28-.72-2"/></svg></span></p>

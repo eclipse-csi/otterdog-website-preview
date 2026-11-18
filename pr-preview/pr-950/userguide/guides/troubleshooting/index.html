@@ -385,6 +385,8 @@
       
         
       
+        
+      
     
     
     
@@ -4272,6 +4274,8 @@
       
         
       
+        
+      
     
     
     
@@ -4448,6 +4452,33 @@
     
   
   Testing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developing_otterdog/ai_agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AI Coding Agents
 
     
   </span>
@@ -5190,6 +5221,15 @@ otterdog updates that policy instead. This warning is shown in the log of the ap
 <p><strong>Fix</strong>: mark the draft as ready for review, or comment <code>/otterdog validate</code>. Then comment <code>/otterdog merge</code> again.</p>
 </details>
 <details class="warning">
+<summary>The latest commit is not validated yet</summary>
+<p><code>the latest commit of the pull request has not been validated yet, wait for its validation or run /otterdog
+validate</code></p>
+<p><strong>Cause</strong>: a commit has been pushed since the last validation: its validation is still running, or the
+validation of a previous commit completed after it.</p>
+<p><strong>Fix</strong>: wait for the validation comment of the latest commit, or comment <code>/otterdog validate</code>. Then comment
+<code>/otterdog merge</code> again.</p>
+</details>
+<details class="warning">
 <summary>The pull request is not valid</summary>
 <p><code>pull request is not valid, check the /otterdog validate comment for details and push a fix</code></p>
 <p><strong>Cause</strong>: the last validation found errors.</p>
@@ -5239,9 +5279,9 @@ admin team.</p>
 <details class="question">
 <summary>Nothing happens after <code>/otterdog merge</code></summary>
 <p><strong>Cause</strong>: the comment does not start with the command, or GitHub refused the merge, e.g. because of a conflict
-with <code>main</code>.</p>
-<p><strong>Fix</strong>: start the comment with <code>/otterdog merge</code>. Otherwise, update the branch with <code>main</code> and comment
-<code>/otterdog merge</code> again.</p>
+with <code>main</code>, or because a commit has been pushed after the validated one.</p>
+<p><strong>Fix</strong>: start the comment with <code>/otterdog merge</code>. Otherwise, update the branch with <code>main</code> if it conflicts, wait
+for the validation of the latest commit, and comment <code>/otterdog merge</code> again.</p>
 </details>
 <h2 id="plan-and-apply">Plan and apply<a class="headerlink" href="#plan-and-apply" title="Permanent link">&para;</a></h2>
 <details class="question">
